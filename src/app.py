@@ -14,7 +14,7 @@ server = app.server
 sidebar = html.Div(
     [
         dbc.Row(
-            [html.Img(src='assets/logos/bed.png', style={'height': '20px'})],
+            [html.Img(src='../assets/logos/bed.png', style={'height': '20px'})],
             className='sidebar-logo',
         ),
         html.Hr(),
