@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3a78f93d-7a19-4f31-a357-4182f36e3d13" name="Changes" comment="&quot;upload de correção&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/df_cursos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/df_cursos.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/prog_aulas_curso.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/prog_aulas_curso.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/df_cursos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/df_cursos.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/pg_gcn.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_gcn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/pg_geral.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_geral.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pg_grh.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_grh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pg_qtc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_qtc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,17 +29,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Eduardo Borges Filho/PycharmProjects/painel-pos-nav/pages"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Eduardo Borges Filho/PycharmProjects/painel-pos-nav/src/pages&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\src\pages" />
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\pages" />
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\assets\logos" />
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav" />
@@ -156,7 +152,23 @@
       <option name="project" value="LOCAL" />
       <updated>1728578443269</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="&quot;upload de correção&quot;">
+      <option name="closed" value="true" />
+      <created>1728581160838</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728581160838</updated>
+    </task>
+    <task id="LOCAL-00006" summary="&quot;upload de correção&quot;">
+      <option name="closed" value="true" />
+      <created>1728581166845</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728581166845</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

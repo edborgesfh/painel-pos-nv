@@ -53,7 +53,7 @@ def update_graphs(modulo_selecionado):
                             x_end='data final',
                             y='ID',
                             color='progresso',
-                            color_continuous_scale=['#ffd700', '#008844'],)
+                            color_continuous_scale=['#ffd700', '#FF0023'],)
     grh_gantt.update_layout(grafico_config, title={'text': 'Linha do tempo — Produção das Aulas', 'x': 0.5})
     grh_gantt.update_yaxes(autorange='reversed', title='Aulas',)
     grh_gantt.update_xaxes(title='Seletor de intervalo', gridcolor='rgba(255, 255, 255, 0.04)',
@@ -84,8 +84,8 @@ def update_graphs(modulo_selecionado):
         for i, id in enumerate(fig.data):
             progresso = df[df['ID'] == id.name]['progresso'].iloc[-1]
             if progresso == 100:
-                fig.data[i].line.color = '#008844'
-                fig.data[i].marker.color = '#008844'
+                fig.data[i].line.color = '#FF0023'
+                fig.data[i].marker.color = '#FF0023'
             else:
                 fig.data[i].line.color = '#ffd700'
                 fig.data[i].marker.color = '#ffd700'
@@ -130,7 +130,7 @@ def update_graphs(modulo_selecionado):
 
     def cor_gauge_progresso(media_progresso):
         if media_progresso == 100:
-            return '#008844'
+            return '#FF0023'
         else:
             return '#ffd700'
 
@@ -160,7 +160,7 @@ def update_graphs(modulo_selecionado):
 
     def cor_gauge_duracao(media_duracao):
         if media_duracao <= 100:
-            return '#008844'
+            return '#FF0023'
         elif 100 < media_duracao <= 200:
             return '#ffd700'
         else:
@@ -191,7 +191,7 @@ def update_graphs(modulo_selecionado):
         y='Aula',
         labels=False,
         color='Status',
-        color_discrete_map={'CONCLUÍDA': '#008844',
+        color_discrete_map={'CONCLUÍDA': '#FF0023',
                             'EM ANDAMENTO': '#ffd700',
                             'PENDENTE': 'gray'},
         text_auto=True,
@@ -217,7 +217,7 @@ def update_graphs(modulo_selecionado):
         x='Aula',
         color='Status',
         orientation='h',
-        color_discrete_map={'CONCLUÍDA': '#008844',
+        color_discrete_map={'CONCLUÍDA': '#FF0023',
                             'EM ANDAMENTO': '#ffd700',
                             'PENDENTE': 'gray',
                             },
@@ -252,7 +252,7 @@ def update_graphs(modulo_selecionado):
         x='Número de subtarefas',
         color='Status',
         orientation='h',
-        color_discrete_map={'CONCLUÍDA': '#008844',
+        color_discrete_map={'CONCLUÍDA': '#FF0023',
                             'EM ANDAMENTO': '#ffd700',
                             'PENDENTE': 'gray',
                             },
