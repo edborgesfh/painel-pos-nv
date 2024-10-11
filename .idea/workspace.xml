@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a78f93d-7a19-4f31-a357-4182f36e3d13" name="Changes" comment="&quot;upload de correção&quot;" />
+    <list default="true" id="3a78f93d-7a19-4f31-a357-4182f36e3d13" name="Changes" comment="&quot;upload de correção&quot;">
+      <change afterPath="$PROJECT_DIR$/src/pages/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/df_cursos.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/df_cursos.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/pg_gcn.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_gcn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/pg_geral.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_geral.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/pg_qtc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pg_qtc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/prog_aulas_curso.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/prog_aulas_curso.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,11 +57,11 @@
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\src" />
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav" />
+      <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\src\data" />
+      <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\src" />
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\data" />
       <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\pages" />
-      <recent name="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\assets\css" />
     </key>
   </component>
   <component name="RunManager" selected="Python.app">
@@ -62,7 +78,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\src\app.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Eduardo Borges Filho\PycharmProjects\painel-pos-nav\app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -187,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728657724261</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="&quot;upload de correção&quot;">
+      <option name="closed" value="true" />
+      <created>1728660787420</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728660787420</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
