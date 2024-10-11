@@ -6,6 +6,7 @@ app = Dash(
     __name__,
     use_pages=True,
     title='Painel Pós-Graduações UNICORP',
+    pages_folder='src/pages',
     external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME],
 )
 server = app.server
