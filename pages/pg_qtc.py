@@ -25,38 +25,38 @@ dash.register_page(
     __name__,
     suppress_callback_exceptions=True,
     external_stylesheets=[dbc.themes.BOOTSTRAP],
-    path='/grh',
+    path='/qtc',
 )
 
 # dataset
-df_cursos = pd.read_csv('src/data/df_cursos.csv')
+df_cursos = pd.read_csv('data/df_cursos.csv')
 
 df_cursos['data final'] = pd.to_datetime(df_cursos['data final'], format='ISO8601')
 df_cursos['data inicial'] = pd.to_datetime(df_cursos['data inicial'], format='ISO8601')
 
-df_grh = df_cursos[df_cursos['curso'] == 'Gestão de Recursos Humanos']
+df_qtc = df_cursos[df_cursos['curso'] == 'Qualidade e Tecnologias da Carne']
 
 # Cache e funções de gráficos
 @lru_cache(maxsize=32)
 def update_graphs(modulo_selecionado):
-    grh_filtrado = df_grh.copy()
+    qtc_filtrado = df_qtc.copy()
     if modulo_selecionado:
-        grh_filtrado = grh_filtrado[grh_filtrado['Módulo'].isin(modulo_selecionado)]
+        qtc_filtrado = qtc_filtrado[qtc_filtrado['Módulo'].isin(modulo_selecionado)]
 
     # Operação com o df para gerar o gráfico
-    data_minima = grh_filtrado['data inicial'].min()
+    data_minima = qtc_filtrado['data inicial'].min()
     data_maxima = date.today()
 
     # Plotagem do gráfico
-    grh_gantt = px.timeline(grh_filtrado,
+    qtc_gantt = px.timeline(qtc_filtrado,
                             x_start='data inicial',
                             x_end='data final',
                             y='ID',
                             color='progresso',
-                            color_continuous_scale=['#ffd700', '#FF0023'],)
-    grh_gantt.update_layout(grafico_config, title={'text': 'Linha do tempo — Produção das Aulas', 'x': 0.5})
-    grh_gantt.update_yaxes(autorange='reversed', title='Aulas',)
-    grh_gantt.update_xaxes(title='Seletor de intervalo', gridcolor='rgba(255, 255, 255, 0.04)',
+                            color_continuous_scale=['#ffd700', '#DB00FF'],)
+    qtc_gantt.update_layout(grafico_config, title={'text': 'Linha do tempo — Produção das Aulas', 'x': 0.5})
+    qtc_gantt.update_yaxes(autorange='reversed', title='Aulas',)
+    qtc_gantt.update_xaxes(title='Seletor de intervalo', gridcolor='rgba(255, 255, 255, 0.04)',
                            autorange=False, range=[data_minima, data_maxima],
                            rangeslider=dict(visible=True, thickness=0.07),
                            rangeselector=dict(buttons=list([
@@ -66,10 +66,10 @@ def update_graphs(modulo_selecionado):
                                dict(count=1, label='todo', step='all')]),
                                bgcolor='rgba(0, 0, 0, 0)', activecolor='#ffd700')
                            )
-    grh_gantt.update_coloraxes(showscale=False)
-    grh_gantt.update_traces(marker_line_width=0,
-                            customdata=np.stack((grh_filtrado['Módulo'], grh_filtrado['Aula'],
-                                                 grh_filtrado['Subtarefa'], grh_filtrado['Responsável']), axis=-1),
+    qtc_gantt.update_coloraxes(showscale=False)
+    qtc_gantt.update_traces(marker_line_width=0,
+                            customdata=np.stack((qtc_filtrado['Módulo'], qtc_filtrado['Aula'],
+                                                 qtc_filtrado['Subtarefa'], qtc_filtrado['Responsável']), axis=-1),
                             hovertemplate='<b>Aula %{customdata[1]}</b><br>'
                                           'Módulo %{customdata[0]}<br>'
                                           'Início: %{base}<br>'
@@ -84,8 +84,8 @@ def update_graphs(modulo_selecionado):
         for i, id in enumerate(fig.data):
             progresso = df[df['ID'] == id.name]['progresso'].iloc[-1]
             if progresso == 100:
-                fig.data[i].line.color = '#FF0023'
-                fig.data[i].marker.color = '#FF0023'
+                fig.data[i].line.color = '#DB00FF'
+                fig.data[i].marker.color = '#DB00FF'
             else:
                 fig.data[i].line.color = '#ffd700'
                 fig.data[i].marker.color = '#ffd700'
@@ -93,7 +93,7 @@ def update_graphs(modulo_selecionado):
         return fig
 
 # Plotando
-    grh_linhas = px.line(grh_filtrado,
+    qtc_linhas = px.line(qtc_filtrado,
                          x='data final',
                          y='progresso',
                          color='ID',
@@ -101,13 +101,13 @@ def update_graphs(modulo_selecionado):
                          hover_data={'ID': False, 'Aula': True, 'Módulo': True}
                          )
 
-    grh_linhas = cores_linhas(grh_linhas, grh_filtrado)
+    qtc_linhas = cores_linhas(qtc_linhas, qtc_filtrado)
 
-    grh_linhas.update_layout(grafico_config,
+    qtc_linhas.update_layout(grafico_config,
                              title={'text': 'Progresso das aulas', 'x': 0.5},
                              )
-    grh_linhas.update_yaxes(title='Progresso (%)', range=[0, 100], gridcolor='rgba(255, 255, 255, 0.04)')
-    grh_linhas.update_xaxes(showgrid=False,
+    qtc_linhas.update_yaxes(title='Progresso (%)', range=[0, 100], gridcolor='rgba(255, 255, 255, 0.04)')
+    qtc_linhas.update_xaxes(showgrid=False,
                             title='Seletor de intervalo', autorange=False, range=[data_minima, data_maxima],
                             rangeslider=dict(visible=True, thickness=0.07),
                             rangeselector=dict(buttons=list([
@@ -118,7 +118,7 @@ def update_graphs(modulo_selecionado):
                                 bgcolor='rgba(0, 0, 0, 0)', activecolor='#ffd700')
                             )
 
-    grh_linhas.update_traces(
+    qtc_linhas.update_traces(
         hovertemplate='<b>Data</b> %{x}<br>'
                       '<b>Progresso</b> %{y:.0f}%<br>'  # '.0f' formata como inteiro
                       '<b>Aula</b> %{customdata[1]}<br>'  # 'Aula' está em customdata[1]
@@ -126,16 +126,16 @@ def update_graphs(modulo_selecionado):
     )
 
 # Configurando df e cores do Indicador Progresso
-    media_progresso = grh_filtrado.groupby('ID')['progresso'].max().mean()
+    media_progresso = qtc_filtrado.groupby('ID')['progresso'].max().mean()
 
     def cor_gauge_progresso(media_progresso):
         if media_progresso == 100:
-            return '#FF0023'
+            return '#DB00FF'
         else:
             return '#ffd700'
 
 # Plotando
-    grh_progresso = go.Figure(go.Indicator(
+    qtc_progresso = go.Figure(go.Indicator(
         mode="gauge+number",
         value=media_progresso,
         domain={'x': [0, 1], 'y': [0, 1]},
@@ -144,14 +144,14 @@ def update_graphs(modulo_selecionado):
                }
     ))
 
-    grh_progresso.update_layout(grafico_config,
+    qtc_progresso.update_layout(grafico_config,
                                 margin=dict(r=50, l=20, b=10, t=60),
                                 title={'text': 'Progresso Total (%)', 'x': 0.5},
                                 )
 
 # Configurando df e cores do Indicador Duração
-    data_min = grh_filtrado.groupby('ID')['data inicial'].min()
-    data_max = grh_filtrado.groupby('ID')['data final'].max()
+    data_min = qtc_filtrado.groupby('ID')['data inicial'].min()
+    data_max = qtc_filtrado.groupby('ID')['data final'].max()
 
     duracao = data_max - data_min
     media_duracao = duracao.mean().days
@@ -160,64 +160,63 @@ def update_graphs(modulo_selecionado):
 
     def cor_gauge_duracao(media_duracao):
         if media_duracao <= 100:
-            return '#FF0023'
+            return '#DB00FF'
         elif 100 < media_duracao <= 200:
             return '#ffd700'
         else:
             return 'red'
 
 # Plotando
-    grh_duracao = go.Figure(go.Indicator(
+    qtc_duracao = go.Figure(go.Indicator(
         mode="gauge+number",
         value=media_duracao,
         domain={'x': [0, 1], 'y': [0, 1]},
         gauge={'axis': {'range': [duracao_minima, duracao_maxima]}, 'bar': {'color': cor_gauge_duracao(media_duracao)}}
     ))
 
-    grh_duracao.update_layout(grafico_config,
-                              margin=dict(r=50, l=20, b=10, t=60),
+    qtc_duracao.update_layout(grafico_config,
                               title={'text': 'Produção (dias)', 'x': 0.5},
                               )
 
 #  Barras (3)
 # Modificação para Aula por Status
-    aulas_grh = grh_filtrado.groupby(['curso', 'Módulo', 'Aula', 'Status']).agg({'data final': 'max'}).reset_index()
-    aulas_grh = aulas_grh.drop(columns=['data final'])
-    aulas_grh = aulas_grh.groupby(['Status']).size().to_frame(name='Aula').reset_index()
+    aulas_qtc = qtc_filtrado.groupby(['curso', 'Módulo', 'Aula', 'Status']).agg({'data final': 'max'}).reset_index()
+    aulas_qtc = aulas_qtc.drop(columns=['data final'])
+    aulas_qtc = aulas_qtc.groupby(['Status']).size().to_frame(name='Aula').reset_index()
 # Plotando
-    grh_barras = px.bar(
-        aulas_grh,
+    qtc_barras = px.bar(
+        aulas_qtc,
         x='Status',
         y='Aula',
         labels=False,
         color='Status',
-        color_discrete_map={'CONCLUÍDA': '#FF0023',
+        color_discrete_map={'CONCLUÍDA': '#DB00FF',
                             'EM ANDAMENTO': '#ffd700',
                             'PENDENTE': 'gray'},
         text_auto=True,
         hover_data=None,
     )
 
-    grh_barras.update_layout(grafico_config,
+    qtc_barras.update_layout(grafico_config,
                              title={'text': 'Aulas por Status', 'x': 0.5},
                              )
-    grh_barras.update_yaxes(showticklabels=False, showgrid=False, title=None, zeroline=False)
-    grh_barras.update_xaxes(title=None)
-    grh_barras.update_traces(textfont_size=20, textfont_color='#D3D3D3', marker_line_width=0,)
+    qtc_barras.update_yaxes(showticklabels=False, showgrid=False, title=None, zeroline=False)
+    qtc_barras.update_xaxes(title=None)
+    qtc_barras.update_traces(textfont_size=20, textfont_color='#D3D3D3', marker_line_width=0,)
 
 # Modificação para Aulas por Professor(a)
-    professor_grh = grh_filtrado.groupby(['curso', 'Professor', 'Módulo', 'Aula', 'Status']).agg({'data final': 'max'})
-    professor_grh = professor_grh.reset_index()
-    professor_grh = professor_grh.groupby(['curso', 'Professor', 'Módulo', 'Status']).size().to_frame(name='Aula')
-    professor_grh = professor_grh.reset_index()
+    professor_qtc = qtc_filtrado.groupby(['curso', 'Professor', 'Módulo', 'Aula', 'Status']).agg({'data final': 'max'})
+    professor_qtc = professor_qtc.reset_index()
+    professor_qtc = professor_qtc.groupby(['curso', 'Professor', 'Módulo', 'Status']).size().to_frame(name='Aula')
+    professor_qtc = professor_qtc.reset_index()
 # Plotando
-    grh_professores = px.bar(
-        professor_grh,
+    qtc_professores = px.bar(
+        professor_qtc,
         y='Professor',
         x='Aula',
         color='Status',
         orientation='h',
-        color_discrete_map={'CONCLUÍDA': '#FF0023',
+        color_discrete_map={'CONCLUÍDA': '#DB00FF',
                             'EM ANDAMENTO': '#ffd700',
                             'PENDENTE': 'gray',
                             },
@@ -225,81 +224,86 @@ def update_graphs(modulo_selecionado):
         text_auto=True,
     )
 
-    grh_professores.update_layout(grafico_config,
+    qtc_professores.update_layout(grafico_config,
+                                  height=400,
+                                  margin=dict(r=20, l=20, b=20, t=50),
                                   title={'text': 'Aulas por professor(a)', 'x': 0.5},
                                   )
 
-    grh_professores.update_xaxes(showticklabels=False, showgrid=False, title=None, zeroline=False)
-    grh_professores.update_yaxes(title=None)
-    grh_professores.update_traces(textfont_size=12, textfont_color='#D3D3D3', marker_line_width=0,
-                                  customdata=np.stack((professor_grh['Módulo'],
-                                                       professor_grh['Aula']), axis=-1),
+    qtc_professores.update_xaxes(showticklabels=False, showgrid=False, title=None, zeroline=False)
+    qtc_professores.update_yaxes(title=None)
+    qtc_professores.update_traces(textfont_size=12, textfont_color='#D3D3D3', marker_line_width=0,
+                                  customdata=np.stack((professor_qtc['Módulo'],
+                                                       professor_qtc['Aula']), axis=-1),
                                   hovertemplate='<b>Professor(a) %{y}</b><br>'
                                                 'Módulo %{customdata[0]}<br>'
                                                 '%{x} aulas<br>')
 
 # Modificação para Subtarefas por responsável
-    responsavel_grh = grh_filtrado.groupby(['Responsável', 'Módulo', 'Status']).size().to_frame(
+    responsavel_qtc = qtc_filtrado.groupby(['Responsável', 'Módulo', 'Status']).size().to_frame(
         name='Número de subtarefas')
-    responsavel_grh = responsavel_grh.reset_index()
+    responsavel_qtc = responsavel_qtc.reset_index()
 
-    ordem_grh = responsavel_grh.groupby('Responsável')['Número de subtarefas'].sum()
-    ordem_grh = ordem_grh.sort_values(ascending=True).index
+    ordem_qtc = responsavel_qtc.groupby('Responsável')['Número de subtarefas'].sum()
+    ordem_qtc = ordem_qtc.sort_values(ascending=True).index
 # Plotando
-    grh_responsavel = px.bar(
-        responsavel_grh,
+    qtc_responsavel = px.bar(
+        responsavel_qtc,
         y='Responsável',
         x='Número de subtarefas',
         color='Status',
         orientation='h',
-        color_discrete_map={'CONCLUÍDA': '#FF0023',
-                            'EM ANDAMENTO': '#ffd700',
-                            'PENDENTE': 'gray',
-                            },
+        color_discrete_map={
+            'CONCLUÍDA': '#DB00FF',
+            'EM ANDAMENTO': '#ffd700',
+            'PENDENTE': 'gray',
+        },
         hover_data={'Módulo': True, 'Status': False},
         text_auto=True
     )
 
-    grh_responsavel.update_layout(grafico_config,
+    qtc_responsavel.update_layout(grafico_config,
                                   height=1200,
                                   title={'text': 'Subtarefas por Responsável', 'x': 0.5},
                                   )
 
-    grh_responsavel.update_xaxes(showticklabels=False, showgrid=False, title=None, zeroline=False)
-    grh_responsavel.update_yaxes(title=None, categoryorder='array', categoryarray=ordem_grh)
-    grh_responsavel.update_traces(textfont_size=12, textfont_color='#D3D3D3', marker_line_width=0,
-                                  customdata=np.stack((responsavel_grh['Responsável'],
-                                                       responsavel_grh['Módulo'],
-                                                       responsavel_grh['Responsável']), axis=-1),
+    qtc_responsavel.update_xaxes(showticklabels=False, showgrid=False, title=None, zeroline=False)
+    qtc_responsavel.update_yaxes(title=None, categoryorder='array', categoryarray=ordem_qtc)
+    qtc_responsavel.update_traces(textfont_size=12, textfont_color='#D3D3D3', marker_line_width=0,
+                                  customdata=np.stack((responsavel_qtc['Responsável'],
+                                                       responsavel_qtc['Módulo'],
+                                                       responsavel_qtc['Responsável']), axis=-1),
                                   hovertemplate='<b>%{y}</b> <br>'
                                                 'Módulo %{customdata[1]}<br>'
                                                 'Subtarefas: %{x}<br>'
                                   )
 
-    return (grh_gantt.to_dict(), grh_linhas.to_dict(), grh_progresso.to_dict(), grh_duracao.to_dict(),
-            grh_barras.to_dict(), grh_professores.to_dict(), grh_responsavel.to_dict())
+    return (qtc_gantt.to_dict(), qtc_linhas.to_dict(), qtc_progresso.to_dict(), qtc_duracao.to_dict(),
+            qtc_barras.to_dict(), qtc_professores.to_dict(), qtc_responsavel.to_dict())
 
 # layout
+
 tab_gantt = dbc.Row(
     [
         dbc.Col(
             dcc.Loading(
                 dcc.Graph(
-                    id='grh-gantt',
+                    id='qtc-gantt',
                     className='chart-container'
-                ), type='circle', color='#ffd700',
+                ),
+                type='circle',
+                color='#ffd700',
             ),
         ),
     ],
 ),
-
 tab_indicadores = dbc.Row(
     [
         dbc.Col(
             dcc.Loading(
                 html.Div(
                     [dcc.Graph(
-                        id='grh-linhas',
+                        id='qtc-linhas',
                         className='chart-container'
                     )
                     ],
@@ -313,7 +317,7 @@ tab_indicadores = dbc.Row(
                         dbc.Row(
                             dbc.Col(
                                 [dcc.Graph(
-                                    id='grh-progresso',
+                                    id='qtc-progresso',
                                     className='chart-container2'
                                 )
                                 ],
@@ -322,9 +326,9 @@ tab_indicadores = dbc.Row(
                         dbc.Row(
                             dbc.Col(
                                 [dcc.Graph(
-                                    id='grh-duracao',
-                                    className='chart-container2',
-                                )
+                                    id='qtc-duracao',
+                                    className='chart-container2'
+                                    )
                                 ],
                             )
                         ),
@@ -341,7 +345,7 @@ tab_colaboradores = dbc.Row(
             dcc.Loading(
                 html.Div(
                     [dcc.Graph(
-                        id='grh-barras',
+                        id='qtc-barras',
                         className='chart-container'
                     )
                     ],
@@ -352,7 +356,7 @@ tab_colaboradores = dbc.Row(
             dcc.Loading(
                 html.Div(
                     [dcc.Graph(
-                        id='grh-professores',
+                        id='qtc-professores',
                         className='chart-container'
                     )
                     ],
@@ -366,7 +370,7 @@ tab_colaboradores = dbc.Row(
                         html.Div(
                             children=[
                                 html.Div(
-                                    dcc.Graph(id='grh-responsaveis'),
+                                    dcc.Graph(id='qtc-responsaveis'),
                                     className='chart-container'
                                 )
                             ]
@@ -399,7 +403,7 @@ layout = dbc.Container(
                         dbc.Col(
                             [
                                 html.H2(
-                                    'Gestão de Recursos Humanos',  # title
+                                    'Gestão e Controle de Negócios',  # title
                                     className='title',
                                 ),
                             ], width=5,
@@ -408,7 +412,7 @@ layout = dbc.Container(
                             [
                                 dcc.Dropdown(id='filtro-modulo',
                                              options=[{'label': curso, 'value': curso}
-                                                      for curso in df_grh['Módulo'].unique()],
+                                                      for curso in df_qtc['Módulo'].unique()],
                                              placeholder='Selecione o Módulo',
                                              value=None,
                                              multi=True,
@@ -429,15 +433,15 @@ layout = dbc.Container(
 )
 
 @callback(
-    Output('grh-gantt', 'figure'),
+    Output('qtc-gantt', 'figure'),
 
-    Output('grh-linhas', 'figure'),
-    Output('grh-progresso', 'figure'),
-    Output('grh-duracao', 'figure'),
+    Output('qtc-linhas', 'figure'),
+    Output('qtc-progresso', 'figure'),
+    Output('qtc-duracao', 'figure'),
 
-    Output('grh-barras', 'figure'),
-    Output('grh-professores', 'figure'),
-    Output('grh-responsaveis', 'figure'),
+    Output('qtc-barras', 'figure'),
+    Output('qtc-professores', 'figure'),
+    Output('qtc-responsaveis', 'figure'),
 
     Input('filtro-modulo', 'value')
 )

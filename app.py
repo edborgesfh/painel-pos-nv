@@ -6,7 +6,6 @@ app = Dash(
     __name__,
     use_pages=True,
     title='Painel Pós-Graduações UNICORP',
-    pages_folder='src/pages',
     external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME],
 )
 server = app.server
@@ -15,7 +14,7 @@ server = app.server
 sidebar = html.Div(
     [
         dbc.Row(
-            [html.Img(src='src/assets/logos/bed.png', style={'height': '20px'})],
+            [html.Img(src='assets/logos/bed.png', style={'height': '20px'})],
             className='sidebar-logo',
         ),
         html.Hr(),
