@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a78f93d-7a19-4f31-a357-4182f36e3d13" name="Changes" comment="&quot;upload de correção&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/pg_gcn.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pg_gcn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/pg_geral.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pg_geral.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/pg_grh.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pg_grh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/pg_qtc.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pg_qtc.py" afterDir="false" />
-    </list>
+    <list default="true" id="3a78f93d-7a19-4f31-a357-4182f36e3d13" name="Changes" comment="&quot;upload de correção&quot;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -234,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728665103266</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="&quot;upload de correção&quot;">
+      <option name="closed" value="true" />
+      <created>1729607481438</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1729607481438</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

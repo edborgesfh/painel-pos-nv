@@ -5,3 +5,4 @@ plotly~=5.24.1
 gunicorn
 dash-bootstrap-components
 dash-bootstrap-templates
+flask-caching
