@@ -266,3 +266,22 @@ height: calc(50vh - 100px); /* Ajusta a altura com base na altura da janela */
 overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
 }
 
+/* Botoes */
+/* Estilos para todos os botões dentro do ButtonGroup #filtro-periodo */
+#filtro-periodo .btn {
+  border: transparent !important; /* Borda amarela para todos */
+  margin-right: 10px !important;
+  text-align: left !important;
+}
+
+/* Estilo para botões INATIVOS */
+#filtro-periodo .btn:not(.active) {
+  background-color: transparent !important;
+  color: #D3D3D3 !important;
+}
+
+/* Estilo para botões ATIVOS */
+#filtro-periodo .btn.active {
+  background-color: transparent !important;
+  color: #ffd700 !important;
+}

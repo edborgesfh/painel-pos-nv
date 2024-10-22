@@ -1,7 +1,6 @@
 import dash
 from dash import callback, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
-# from utils.functions import create_card
 import pandas as pd
 import numpy as np
 import plotly.express as px

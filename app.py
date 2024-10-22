@@ -2,12 +2,21 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html
 
+from flask_caching import Cache
+
 app = Dash(
     __name__,
     use_pages=True,
     title='Painel Pós-Graduações UNICORP',
     external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.FONT_AWESOME],
 )
+
+# Configuração do cache com Flask-Caching
+cache = Cache(app.server, config={
+    'CACHE_TYPE': 'SimpleCache',  # Cache em memória simples
+    'CACHE_DEFAULT_TIMEOUT': 60  # Tempo de expiração do cache em segundos (300 segundos = 5 minutos)
+})
+
 server = app.server
 
 # sidebar
